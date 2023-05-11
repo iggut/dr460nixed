@@ -1,6 +1,6 @@
 [![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org) [![Build x86](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/cachix_x86.yml/badge.svg)](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/cachix_x86.yml) [![Sync Tailscale ACLs](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/tailscale.yml/badge.svg)](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/tailscale.yml)
 
-# My personal NixOS flake & system configurations
+# My personal 'try' NixOS flake & system configurations
 
 This repo contains my NixOS dotfiles. All of my personal devices are going to be added here over time.
 
@@ -69,5 +69,5 @@ nix develop
 `nixos-rebuild --flake .` To build system configurations
 
 ## Credits
-
-A special thanks to [PedroHLC](https://github.com/pedrohlc) and [Mysterio77](https://github.com/Misterio77), as well as to [NotAShelf](https://github.com/NotAShelf) - their Nix configurations helped tremendously while setting all of this up.
+ dr460nf1r3
+A special thanks to  [dr460nf1r3](https://github.com/dr460nf1r3) , [PedroHLC](https://github.com/pedrohlc) and [Mysterio77](https://github.com/Misterio77), as well as to [NotAShelf](https://github.com/NotAShelf) - their Nix configurations helped tremendously while setting all of this up.
