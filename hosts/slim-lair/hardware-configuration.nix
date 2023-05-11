@@ -1,46 +1,44 @@
-{ config
-, lib
-, modulesPath
-, pkgs
-, ...
+{
+  config,
+  lib,
+  modulesPath,
+  pkgs,
+  ...
 }: {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.extraModulePackages = [ ];
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/7e2d88b3-7268-4c25-9a7d-af700c07d96d";
-      fsType = "btrfs";
-      options = [ "subvol=@nixos" "compress=zstd" "noatime" ];
-    };
-  fileSystems."/home" =
-    {
-      device = "/dev/disk/by-uuid/7e2d88b3-7268-4c25-9a7d-af700c07d96d";
-      fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zstd" "noatime" ];
-    };
-  fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/7e2d88b3-7268-4c25-9a7d-af700c07d96d";
-      fsType = "btrfs";
-      options = [ "subvol=@nix" "compress=zstd" "noatime" ];
-    };
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/5772-1FF9";
-      fsType = "vfat";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/d05f4b88-767b-4080-baef-4b33c003b691";
+    fsType = "btrfs";
+    options = ["subvol=@nixos" "compress=zstd" "noatime"];
+  };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/d05f4b88-767b-4080-baef-4b33c003b691";
+    fsType = "btrfs";
+    options = ["subvol=@home" "compress=zstd" "noatime"];
+  };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/d05f4b88-767b-4080-baef-4b33c003b691";
+    fsType = "btrfs";
+    options = ["subvol=@nix" "compress=zstd" "noatime"];
+  };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/E16B-40F6";
+    fsType = "vfat";
+  };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/82be5447-8e53-43f1-b806-82f36f0a5926";}
+  ];
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }

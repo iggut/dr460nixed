@@ -30,8 +30,8 @@ ToolBoxButtonX=451
 ToolBoxButtonY=32
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=/home/nico/.local/share/wallpapers/Malefor.jpg
-SlidePaths=/home/nico/.local/share/wallpapers/,/nix/store/xa8vqjs16l5srxxj4p6bmr39d2dk8dxv-breeze-qt5-5.27.3-bin/share/wallpapers/,/run/current-system/sw/share/wallpapers/
+Image=/home/iggut/.local/share/wallpapers/Malefor.jpg
+SlidePaths=/home/iggut/.local/share/wallpapers/,/nix/store/xa8vqjs16l5srxxj4p6bmr39d2dk8dxv-breeze-qt5-5.27.3-bin/share/wallpapers/,/run/current-system/sw/share/wallpapers/
 
 [Containments][106]
 activityId=
@@ -85,8 +85,8 @@ DialogWidth=680
 PreloadWeight=42
 
 [Containments][108][Wallpaper][org.kde.image][General]
-Image=/home/nico/.local/share/wallpapers/Malefor.jpg
-SlidePaths=/home/nico/.local/share/wallpapers/,/nix/store/xa8vqjs16l5srxxj4p6bmr39d2dk8dxv-breeze-qt5-5.27.3-bin/share/wallpapers/,/run/current-system/sw/share/wallpapers/
+Image=/home/iggut/.local/share/wallpapers/Malefor.jpg
+SlidePaths=/home/iggut/.local/share/wallpapers/,/nix/store/xa8vqjs16l5srxxj4p6bmr39d2dk8dxv-breeze-qt5-5.27.3-bin/share/wallpapers/,/run/current-system/sw/share/wallpapers/
 
 [Containments][111]
 activityId=
@@ -531,8 +531,8 @@ ToolBoxButtonX=463
 ToolBoxButtonY=32
 
 [Containments][2][Wallpaper][org.kde.image][General]
-Image=/home/nico/.local/share/wallpapers/Malefor.jpg
-SlidePaths=/home/nico/.local/share/wallpapers/,/nix/store/xa8vqjs16l5srxxj4p6bmr39d2dk8dxv-breeze-qt5-5.27.3-bin/share/wallpapers/,/run/current-system/sw/share/wallpapers/
+Image=/home/iggut/.local/share/wallpapers/Malefor.jpg
+SlidePaths=/home/iggut/.local/share/wallpapers/,/nix/store/xa8vqjs16l5srxxj4p6bmr39d2dk8dxv-breeze-qt5-5.27.3-bin/share/wallpapers/,/run/current-system/sw/share/wallpapers/
 
 [Containments][3]
 activityId=

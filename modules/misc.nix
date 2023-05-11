@@ -159,5 +159,8 @@ in
 
     # SUID Sandbox
     security.chromiumSuidSandbox.enable = mkIf cfg.chromium true;
+
+
+
   };
 }

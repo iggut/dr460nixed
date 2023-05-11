@@ -21,7 +21,7 @@
   services.chaotic.cluster = true;
 
   # Let my user build packages
-  users.users.nico = {
-    extraGroups = [ "chaotic-op" ];
+  users.users.iggut = {
+    extraGroups = ["chaotic-op"];
   };
 }

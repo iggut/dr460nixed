@@ -1,27 +1,26 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Import individual configuration snippets
-  imports = [ ./shells.nix ];
+  imports = [./shells.nix];
 
   # Always needed home-manager settings - don't touch!
-  home.homeDirectory = "/home/nico";
+  home.homeDirectory = "/home/iggut";
   home.stateVersion = "22.11";
-  home.username = "nico";
+  home.username = "iggut";
 
   # I'm working with git a lot
   programs.git = {
-    diff-so-fancy.enable = true;
     enable = true;
     extraConfig = {
-      core = { editor = "micro"; };
-      init = { defaultBranch = "main"; };
-      pull = { rebase = true; };
+      core = {editor = "micro";};
+      init = {defaultBranch = "main";};
+      pull = {rebase = true;};
     };
     signing = {
       key = "D245D484F3578CB17FD6DA6B67DB29BFF3C96757";
       signByDefault = true;
     };
-    userEmail = "root@dr460nf1r3.org";
-    userName = "Nico Jensch";
+    userEmail = "igor.gutchin@gmail.com";
+    userName = "Igor G";
   };
 
   # GPG for signing commits mostly
@@ -53,6 +52,10 @@
   # Don't forget to always load my .profile & configure caches
   # for Colmena to use (it wasn't used before)
   home.file = {
+    ".bash_profile".text = ''
+      [[ -f ~/.bashrc ]] && . ~/.bashrc
+      [[ -f ~/.profile ]] && . ~/.profile
+    '';
     ".config/nix/nix.conf".text = ''
       substituters = https://cache.nixos.org https://cache.nixos.org/ https://chaotic-nyx.cachix.org https://dr460nf1r3.cachix.org https://nix-community.cachix.org https://garuda-linux.cachix.org https://nixpkgs-unfree.cachix.org https://colmena.cachix.org
       trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8= dr460nf1r3.cachix.org-1:eLI/ymdDmYKBwwSNuA0l6zvfDZuZfh0OECGKzuv8xvU= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= garuda-linux.cachix.org-1:tWw7YBE6qZae0L6BbyNrHo8G8L4sHu5QoDp0OXv70bg= nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs= colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg=
@@ -66,7 +69,7 @@
       enable = true;
       initExtra = ''
         if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
-          exec ${pkgs.tmux}/bin/tmux || exec /usr/bin/tmux
+          exec ${pkgs.tmux}/bin/tmux
         fi
       '';
     };
@@ -85,12 +88,6 @@
         proc_tree = true;
         theme_background = false;
       };
-    };
-
-    # Direnv for per-directory environment variables
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
     };
 
     # Exa as ls replacement
@@ -161,7 +158,7 @@
           disabled = false;
           map_symbol = true;
         };
-        sudo = { disabled = false; };
+        sudo = {disabled = false;};
         cmd_duration = {
           disabled = false;
           format = "took [$duration]($style)";
@@ -181,7 +178,7 @@
       historyLimit = 10000;
       newSession = true;
       sensibleOnTop = false;
-      shell = "/usr/bin/env fish";
+      shell = "${pkgs.fish}/bin/fish";
     };
   };
 

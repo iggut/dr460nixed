@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 with builtins; let
   immutable = false;
@@ -27,10 +28,9 @@ with builtins; let
     url = "https://cloud.garudalinux.org/s/wJSs9gckrNidTBo/download/voice.irs";
     sha256 = "1b643m8v7j15ixi2g6r2909vwkq05wi74ybccbdnp4rkms640y4w";
   };
-in
-{
+in {
   # Theme our desktop launchers
-  imports = [ ./theme-launchers.nix ];
+  imports = [./theme-launchers.nix];
 
   # Compatibility for GNOME apps
   dconf.enable = true;
@@ -49,7 +49,7 @@ in
       Terminal=false
       Type=Application
     '';
-    "${configDir}/autostart/com.rustdesk.RustDesk.desktop".text = ''    
+    "${configDir}/autostart/com.rustdesk.RustDesk.desktop".text = ''
       [Desktop Entry]
       Name=RustDesk
       Exec=flatpak run --branch=master --arch=x86_64 --command=rustdesk --file-forwarding com.rustdesk.RustDesk @@u %u @@
@@ -211,7 +211,7 @@ in
       useReleaseToCapture=true
 
       [Save]
-      defaultSaveLocation=file:///home/nico/Pictures/Screenshots/
+      defaultSaveLocation=file:///home/iggut/Pictures/Screenshots/
     '';
     "${configDir}/startkderc".text = ''
       [General]
@@ -248,12 +248,12 @@ in
   systemd.user.services.jamesdsp = {
     Unit = {
       Description = "JamesDSP daemon";
-      Requires = [ "dbus.service" ];
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" "pipewire.service" ];
+      Requires = ["dbus.service"];
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target" "pipewire.service"];
     };
 
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = ["graphical-session.target"];
 
     Service = {
       ExecStart = "${pkgs.jamesdsp}/bin/jamesdsp --tray";

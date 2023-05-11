@@ -8,7 +8,7 @@
     ];
     host = "127.0.0.1";
     port = 4444;
-    user = "nico";
+    user = "iggut";
   };
 
   # Set the extensions gallery to the Visual Studio Marketplace

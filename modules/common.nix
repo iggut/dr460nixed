@@ -98,10 +98,7 @@ in
         lfs.enable = true;
       };
       # The GnuPG agent
-      gnupg.agent = {
-        enable = true;
-        pinentryFlavor = "curses";
-      };
+      gnupg.agent.enable = true;
       # type "fuck" to fix the last command that made you go "fuck"
       thefuck.enable = true;
     };

@@ -41,7 +41,7 @@ in
     services.netdata.enable = mkIf cfg.monitoring true;
     services.netdata.config = {
       global = {
-        "dbengine disk space" = "512";
+        "dbengine disk space" = "256";
         "memory mode" = "dbengine";
         "update every" = "2";
       };
@@ -72,7 +72,9 @@ in
     systemd.services.netdata = { path = with pkgs; [ jq ]; };
 
     # The Nginx QUIC package with Brotli modules
-    services.nginx.package = pkgs.nginxQuic.override { doCheck = false; };
+    services.nginx.package = pkgs.nginxQuic.override {
+      doCheck = false;
+    };
     services.nginx.additionalModules = with pkgs; [ nginxModules.brotli ];
 
     # Recommended settings replacing custom configuration

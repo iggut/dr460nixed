@@ -30,7 +30,6 @@ in
         micro
         nettools
         nmap
-        pinentry-curses
         python3
         sops
         tldr
@@ -137,9 +136,6 @@ in
       })
       xdg-utils
       yarn
-    ]) ++ optionals cfg.yubikey (with pkgs; [
-      yubikey-personalization
-      # yubioath-flutter # ERROR: No matching distribution found for yubikey-manager==5.0.1
     ]) ++ optionals cfg.school (with pkgs; [
       speedcrunch
       teams-for-linux

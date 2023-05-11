@@ -15,7 +15,7 @@
    <GroupState-SearchFor-IsHidden>false</GroupState-SearchFor-IsHidden>
   </metadata>
  </info>
- <bookmark href="file:///home/nico">
+ <bookmark href="file:///home/iggut">
   <title>Home</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -27,7 +27,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Desktop">
+ <bookmark href="file:///home/iggut/Desktop">
   <title>Desktop</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -40,7 +40,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents">
+ <bookmark href="file:///home/iggut/Documents">
   <title>Documents</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -52,7 +52,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Downloads">
+ <bookmark href="file:///home/iggut/Downloads">
   <title>Downloads</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -64,7 +64,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Music">
+ <bookmark href="file:///home/iggut/Music">
   <title>Music</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -77,7 +77,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Pictures">
+ <bookmark href="file:///home/iggut/Pictures">
   <title>Pictures</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -89,7 +89,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Videos">
+ <bookmark href="file:///home/iggut/Videos">
   <title>Videos</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -102,7 +102,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/browser">
+ <bookmark href="file:///home/iggut/Documents/browser">
   <title>Browser stuff</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -113,7 +113,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/chaotic">
+ <bookmark href="file:///home/iggut/Documents/chaotic">
   <title>Chaotic-AUR</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -124,7 +124,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/misc/dr460nixed">
+ <bookmark href="file:///home/iggut/Documents/misc/dr460nixed">
   <title>NixOS devices</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -135,7 +135,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/garuda">
+ <bookmark href="file:///home/iggut/Documents/garuda">
   <title>Garuda Linux</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -146,7 +146,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/garuda/infra-nix">
+ <bookmark href="file:///home/iggut/Documents/garuda/infra-nix">
   <title>Infrastructure</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -157,7 +157,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/misc">
+ <bookmark href="file:///home/iggut/Documents/misc">
   <title>Misc stuff</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -168,7 +168,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Nextcloud">
+ <bookmark href="file:///home/iggut/Nextcloud">
   <title>Nextcloud</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -179,7 +179,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/pkgbuilds">
+ <bookmark href="file:///home/iggut/Documents/pkgbuilds">
   <title>PKGBUILDs</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -190,7 +190,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/school">
+ <bookmark href="file:///home/iggut/Documents/school">
   <title>School</title>
   <info>
    <metadata owner="http://freedesktop.org">
@@ -201,7 +201,7 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="file:///home/nico/Documents/work">
+ <bookmark href="file:///home/iggut/Documents/work">
   <title>Work area</title>
   <info>
    <metadata owner="http://freedesktop.org">

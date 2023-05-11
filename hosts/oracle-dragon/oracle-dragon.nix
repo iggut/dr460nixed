@@ -1,6 +1,7 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }: {
   # These are the services I use on this machine
   imports = [
@@ -83,25 +84,25 @@
   # Import secrets needed for development
   sops.secrets."api_keys/sops" = {
     mode = "0600";
-    owner = config.users.users.nico.name;
-    path = "/home/nico/.config/sops/age/keys.txt";
+    owner = config.users.users.iggut.name;
+    path = "/home/iggut/.config/sops/age/keys.txt";
   };
   sops.secrets."api_keys/heroku" = {
     mode = "0600";
-    owner = config.users.users.nico.name;
-    path = "/home/nico/.netrc";
+    owner = config.users.users.iggut.name;
+    path = "/home/iggut/.netrc";
   };
   sops.secrets."api_keys/cloudflared" = {
     mode = "0600";
-    owner = config.users.users.nico.name;
-    path = "/home/nico/.cloudflared/cert.pem";
+    owner = config.users.users.iggut.name;
+    path = "/home/iggut/.cloudflared/cert.pem";
   };
 
   # For pushing to GitHub etc.
   sops.secrets."ssh_keys/id_rsa" = {
     mode = "0600";
-    owner = config.users.users.nico.name;
-    path = "/home/nico/.ssh/id_rsa";
+    owner = config.users.users.iggut.name;
+    path = "/home/iggut/.ssh/id_rsa";
   };
 
   # Needed for KASM workspaces

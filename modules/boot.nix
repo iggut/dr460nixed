@@ -1,14 +1,14 @@
-{ config
-, lib
-, ...
-}:
-with lib;
-let
-  cfg = config.dr460nixed.boot;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.dr460nixed.boot;
+in {
   options.dr460nixed.boot = {
-    enable = mkOption
+    enable =
+      mkOption
       {
         default = true;
         type = types.bool;
@@ -57,7 +57,7 @@ in
         "processor.max_cstate=5"
 
         # disable the intel_idle driver and use acpi_idle instead
-        "idle=nomwait"
+        #"idle=nomwait"
 
         # ignore access time (atime) updates on files, except when they coincide with updates to the ctime or mtime
         "rootflags=noatime"
@@ -71,7 +71,7 @@ in
         # 7 = KERN_DEBUG for debugging
         "loglevel=7"
 
-        # isables resume and restores original swap space
+        # disables resume and restores original swap space
         "noresume"
 
         # allows systemd to set and save the backlight state

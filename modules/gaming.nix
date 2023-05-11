@@ -57,7 +57,7 @@ in
     chaotic.gamescope = {
       enable = true;
       package = pkgs.gamescope_git;
-      args = [ "--rt" "--prefer-vk-device 1022:1630" ];
+      args = [ "--rt" "--prefer-vk-device 1002:73ff" ];
       env = { "__GLX_VENDOR_LIBRARY_NAME" = "amd"; };
       session = {
         enable = true;

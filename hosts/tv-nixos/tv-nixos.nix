@@ -1,7 +1,8 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }: {
   # Individual settings
   imports = [
@@ -16,8 +17,8 @@
 
   # Bootloader
   boot = {
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-    initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+    initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod"];
     kernelPackages = pkgs.linuxPackages_cachyos;
     loader = {
       efi = {
@@ -56,7 +57,7 @@
   # Yes, autologin on this one
   services.xserver.displayManager.sddm.settings = {
     Autologin = {
-      User = "nico";
+      User = "iggut";
       Session = "plasma";
     };
   };
@@ -106,10 +107,10 @@
   };
 
   # Enable the touchpad
-  environment.systemPackages = with pkgs; [ libinput ];
+  environment.systemPackages = with pkgs; [libinput];
 
   # Home-manager desktop configuration
-  home-manager.users."nico" = import ../../configurations/home/desktops.nix;
+  home-manager.users."iggut" = import ../../configurations/home/desktops.nix;
 
   # Currently plagued by https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = false;

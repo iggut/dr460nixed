@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Thunderbird configuration
   programs.thunderbird = {
     enable = true;
     # package = pkgs.thunderbird-appmenu;
-    profiles."nico" = {
+    profiles."iggut" = {
       isDefault = true;
       settings = {
         "datareporting.healthreport.uploadEnabled" = false;

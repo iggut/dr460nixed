@@ -1,15 +1,15 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-with lib;
-let
-  cfg = config.dr460nixed.development;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.dr460nixed.development;
+in {
   options.dr460nixed.development = {
-    enable = mkOption
+    enable =
+      mkOption
       {
         default = false;
         type = types.bool;
@@ -23,18 +23,18 @@ in
     # Import secrets needed for development
     sops.secrets."api_keys/sops" = {
       mode = "0600";
-      owner = config.users.users.nico.name;
-      path = "/home/nico/.config/sops/age/keys.txt";
+      owner = config.users.users.iggut.name;
+      path = "/home/iggut/.config/sops/age/keys.txt";
     };
     sops.secrets."api_keys/heroku" = {
       mode = "0600";
-      owner = config.users.users.nico.name;
-      path = "/home/nico/.netrc";
+      owner = config.users.users.iggut.name;
+      path = "/home/iggut/.netrc";
     };
     sops.secrets."api_keys/cloudflared" = {
       mode = "0600";
-      owner = config.users.users.nico.name;
-      path = "/home/nico/.cloudflared/cert.pem";
+      owner = config.users.users.iggut.name;
+      path = "/home/iggut/.cloudflared/cert.pem";
     };
 
     # Conflicts with virtualisation.containers if enabled
@@ -51,16 +51,29 @@ in
         parallelShutdown = 2;
         qemu = {
           ovmf.enable = true;
-          ovmf.packages = [ pkgs.OVMFFull.fd ];
+          ovmf.packages = [pkgs.OVMFFull.fd];
           package = pkgs.qemu_kvm;
           swtpm.enable = true;
+          verbatimConfig = ''
+            namespaces = []
+            user = "iggut"
+            group = "kvm"
+            nographics_allow_host_audio = 1
+            cgroup_device_acl = [
+              "/dev/null", "/dev/full", "/dev/zero",
+              "/dev/random", "/dev/urandom", "/dev/ptmx",
+            	"/dev/kvm", "/dev/kqemu", "/dev/rtc",
+            	"/dev/hpet", "/dev/vfio/vfio",
+            	"/dev/vfio/22", "/dev/shm/looking-glass"
+            ]
+          '';
         };
       };
       lxd.enable = false;
       podman = {
         autoPrune = {
           enable = true;
-          flags = [ "--all" ];
+          flags = ["--all"];
         };
         dockerCompat = true;
         dockerSocket.enable = true;
@@ -69,7 +82,7 @@ in
     };
 
     # Allow to cross-compile to aarch64
-    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+    boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
     # In case I need to fix my phone & Waydroid
     programs.adb.enable = true;

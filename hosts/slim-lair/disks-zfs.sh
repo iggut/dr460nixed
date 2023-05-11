@@ -2,10 +2,10 @@
 set -o errexit
 
 # Create EFI
-mkfs.vfat -F32 /dev/nvme0n1p1
+mkfs.vfat -F32 /dev/nvme0n1p2
 
 # Create pool
-zpool create -f zroot /dev/nvme0n1p2
+zpool create -f zroot /dev/nvme0n1p1
 zpool set autotrim=on zroot
 zfs set compression=on zroot
 zfs set mountpoint=none zroot
@@ -26,19 +26,19 @@ zfs create -o mountpoint=legacy zroot/games/home
 
 # Encrypted volumes
 zfs create -o encryption=on -o keyformat=passphrase \
-	-o mountpoint=/home/nico/.encrypted zroot/data/encrypted
+	-o mountpoint=/home/iggut/.encrypted zroot/data/encrypted
 
 # Mount & Permissions
 mount -t zfs zroot/ROOT/empty /mnt
-mkdir -p /mnt/nix /mnt/home/nico/Games \
+mkdir -p /mnt/nix /mnt/home/iggut/Games \
 	/mnt/var/persistent /mnt/var/residues /mnt/boot
 mount -t zfs zroot/ROOT/nix /mnt/nix
-mount -t zfs zroot/games/home /mnt/home/nico/Games
-chown -R 1000:100 /mnt/home/nico
-chmod 0700 /mnt/home/nico
+mount -t zfs zroot/games/home /mnt/home/iggut/Games
+chown -R 1000:100 /mnt/home/iggut
+chmod 0700 /mnt/home/iggut
 mount -t zfs zroot/data/persistent /mnt/var/persistent
 mount -t zfs zroot/ROOT/residues /mnt/var/residues
-mount /dev/nvme0n1p1 /mnt/boot
+mount /dev/nvme0n1p2 /mnt/boot
 
 # Not needed
 zfs set atime=off zroot/ROOT/nix

@@ -1,12 +1,12 @@
-{ lib
-, pkgs
-, modulesPath
-, ...
+{
+  lib,
+  pkgs,
+  modulesPath,
+  ...
 }:
 with lib; let
   nixos-wsl = import ./nixos-wsl;
-in
-{
+in {
   # Slimmed down configurations
   imports = [
     ../../configurations/common/common.nix
@@ -19,7 +19,7 @@ in
   wsl = {
     enable = true;
     automountPath = "/mnt";
-    defaultUser = "nico";
+    defaultUser = "iggut";
     startMenuLaunchers = true;
 
     # Enable native Docker support
@@ -33,7 +33,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users."nico" = import ../../configurations/home/nico.nix;
+    users."iggut" = import ../../configurations/home/iggut.nix;
   };
 
   # Enable a few selected custom settings

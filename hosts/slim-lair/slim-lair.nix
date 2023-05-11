@@ -1,9 +1,9 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # Individual settings
   imports = [
     ../../configurations/common.nix
@@ -13,14 +13,25 @@
 
   # Use Lanzaboote for secure boot
   boot = {
-    supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = ["btrfs"];
     # Needed to get the touchpad to work
-    blacklistedKernelModules = [ "elan_i2c" ];
+    blacklistedKernelModules = ["elan_i2c"];
     # The new AMD Pstate driver & needed modules
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call zenpower ];
-    kernelModules = [ "acpi_call" "amdgpu" "amd-pstate=passive" ];
+    #extraModulePackages = with config.boot.kernelPackages; [ acpi_call zenpower ];
+    kernelModules = [
+      "acpi_call"
+      "vfio_pci"
+      "vfio_iommu_type1"
+      "vfio"
+      "amdgpu"
+    ];
     kernelPackages = pkgs.linuxPackages_cachyos;
-    kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
+    #kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
+    kernelParams = [
+      "intel_iommu=on"
+      "kvm.ignore_msrs=1"
+      "vfio-pci.ids=10de:2482,10de:228b"
+    ];
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
@@ -35,7 +46,7 @@
 
   # AMD device
   services.hardware.bolt.enable = false;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # enables AMDVLK & OpenCL support
   hardware.opengl.extraPackages = with pkgs; [
@@ -60,7 +71,7 @@
     };
     performance-tweaks.enable = true;
     school = true;
-    yubikey = true;
+    yubikey = false;
   };
 
   # BTRFS stuff
@@ -69,10 +80,13 @@
       spec = "LABEL=OS";
       hashTableSizeMB = 2048;
       verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "1.0" ];
+      extraOptions = ["--loadavg-target" "1.0"];
     };
   };
   services.btrfs.autoScrub.enable = true;
+
+  # Needed for Looking-Glass-Client
+  systemd.tmpfiles.rules = ["f /dev/shm/looking-glass 0666 iggut kvm -"];
 
   # Currently plagued by https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
@@ -84,10 +98,10 @@
   };
 
   # Enable the touchpad & secure boot, as well as add the ipman script
-  environment.systemPackages = with pkgs; [ libinput radeontop zenmonitor ];
+  environment.systemPackages = with pkgs; [libinput radeontop zenmonitor];
 
   # Home-manager desktop configuration
-  home-manager.users."nico" = import ../../configurations/home/desktops.nix;
+  home-manager.users."iggut" = import ../../configurations/home/desktops.nix;
 
   # A few secrets
   sops.secrets."machine-id/slim-lair" = {
@@ -96,8 +110,8 @@
   };
   sops.secrets."ssh_keys/id_rsa" = {
     mode = "0600";
-    owner = config.users.users.nico.name;
-    path = "/home/nico/.ssh/id_rsa";
+    owner = config.users.users.iggut.name;
+    path = "/home/iggut/.ssh/id_rsa";
   };
 
   # NixOS stuff
