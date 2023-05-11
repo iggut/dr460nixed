@@ -1,8 +1,4 @@
-Hi dr460nf1r3! Your work in Garuda and NixOS is next level Thank you thank you! I found your NixOS flake & system config on github and it looks amazing. I would really like to get it running on my machine and have been trying to get it to build for a few days now lol.  Any chance you have time to write up some instructions on getting your setup running? I got as far as getting my drive partitioned when booting from live CD, changed all 'nico' mentions to 'iggut' (my user) and commented out yubikey package install (was preventing build) and it now completes building. Not booting yet.
-Any help would be greatly appreciated. Just ordered a yubikey too, if you are using one, then must be a good security measure. If you are too busy, I understand and would like to at least thank you.🏆 🫵 💪
 
-Regards,
-iggz#0566
 
 [![built with nix](https://img.shields.io/static/v1?logo=nixos&logoColor=white&label=&message=Built%20with%20Nix&color=41439a)](https://builtwithnix.org) [![Build x86](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/cachix_x86.yml/badge.svg)](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/cachix_x86.yml) [![Sync Tailscale ACLs](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/tailscale.yml/badge.svg)](https://github.com/dr460nf1r3/dr460nixed/actions/workflows/tailscale.yml)
 
