@@ -22,9 +22,9 @@
   };
 
   # Needed to allow VSCode storing secrets in Kwallet apparently
-  home.file.".local/share/dbus-1/services/org.freedesktop.secrets".text = ''
-    [D-BUS Service]
-    Name=org.freedesktop.secrets
-    Exec=/usr/bin/kwalletd5
-  '';
+  #home.file.".local/share/dbus-1/services/org.freedesktop.secrets".text = ''
+  #  [D-BUS Service]
+  #  Name=org.freedesktop.secrets
+  #  Exec=/usr/bin/kwalletd5
+  #'';
 }

@@ -33,10 +33,18 @@
       "vfio-pci.ids=10de:2482,10de:228b"
     ];
     loader = {
-      efi.canTouchEfiVariables = true;
-      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      systemd-boot = {
+        consoleMode = "max";
+        editor = false;
+        enable = true;
+      };
     };
   };
+
 
   # Hostname
   networking.hostName = "slim-lair";
@@ -46,7 +54,7 @@
 
   # AMD device
   services.hardware.bolt.enable = false;
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # enables AMDVLK & OpenCL support
   hardware.opengl.extraPackages = with pkgs; [
@@ -66,7 +74,7 @@
     development.enable = true;
     gaming.enable = true;
     garuda-chroot = {
-      enable = true;
+      enable = false;
       root = "/var/lib/machines/garuda";
     };
     performance-tweaks.enable = true;
@@ -80,7 +88,7 @@
       spec = "LABEL=OS";
       hashTableSizeMB = 2048;
       verbosity = "crit";
-      extraOptions = ["--loadavg-target" "1.0"];
+      extraOptions = [ "--loadavg-target" "1.0" ];
     };
   };
   services.btrfs.autoScrub.enable = true;
@@ -90,6 +98,7 @@
 
   # Currently plagued by https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+ 
 
   # RADV video decode & general usage
   environment.variables = {
@@ -98,21 +107,21 @@
   };
 
   # Enable the touchpad & secure boot, as well as add the ipman script
-  environment.systemPackages = with pkgs; [libinput radeontop zenmonitor];
+  environment.systemPackages = with pkgs; [ libinput radeontop zenmonitor ];
 
   # Home-manager desktop configuration
   home-manager.users."iggut" = import ../../configurations/home/desktops.nix;
 
   # A few secrets
-  sops.secrets."machine-id/slim-lair" = {
-    path = "/etc/machine-id";
-    mode = "0600";
-  };
-  sops.secrets."ssh_keys/id_rsa" = {
-    mode = "0600";
-    owner = config.users.users.iggut.name;
-    path = "/home/iggut/.ssh/id_rsa";
-  };
+  #.secrets."machine-id/slim-lair" = {
+  #  path = "/etc/machine-id";
+  #  mode = "0600";
+  #};
+  #sops.secrets."ssh_keys/id_rsa" = {
+  #  mode = "0600";
+  #  owner = config.users.users.iggut.name;
+  #  path = "/home/iggut/.ssh/id_rsa";
+  #};
 
   # NixOS stuff
   system.stateVersion = "22.11";

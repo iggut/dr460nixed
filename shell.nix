@@ -20,7 +20,7 @@
       gnupg
       nix
       nixpkgs-fmt
-      sops
+      #sops
       statix
     ];
   };

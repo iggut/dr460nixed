@@ -28,10 +28,12 @@ in
         jq
         killall
         micro
+        mullvad-vpn # VPN Client
         nettools
         nmap
+        pinentry-curses
         python3
-        sops
+        #sops
         tldr
         traceroute
         ugrep
@@ -107,8 +109,9 @@ in
             foxundermoon.shell-format
             github.codespaces
             github.copilot
+            github.vscode-github-actions
             ms-azuretools.vscode-docker
-            #ms-python.python
+            ms-python.python
             ms-python.vscode-pylance
             ms-vscode.hexeditor
             ms-vsliveshare.vsliveshare
@@ -136,6 +139,9 @@ in
       })
       xdg-utils
       yarn
+    ]) ++ optionals cfg.yubikey (with pkgs; [
+      yubikey-personalization
+      # yubioath-flutter # ERROR: No matching distribution found for yubikey-manager==5.0.1
     ]) ++ optionals cfg.school (with pkgs; [
       speedcrunch
       teams-for-linux

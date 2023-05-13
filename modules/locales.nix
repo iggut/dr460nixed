@@ -1,18 +1,19 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.dr460nixed.locales;
   cfgDesktops = config.dr460nixed.desktops;
+  us = "en_US.UTF-8";
   defaultLocale = "en_US.UTF-8";
-  terminus-variant = "116n";
-in {
+  terminus-variant = "124n";
+in
+{
   options.dr460nixed.locales = {
-    enable =
-      mkOption
+    enable = mkOption
       {
         default = true;
         type = types.bool;
@@ -39,15 +40,15 @@ in {
         LC_CTYPE = defaultLocale;
         LC_MESSAGES = defaultLocale;
 
-        LC_ADDRESS = "en_US.UTF-8";
-        LC_IDENTIFICATION = "en_US.UTF-8";
-        LC_MEASUREMENT = "en_US.UTF-8";
-        LC_MONETARY = "en_US.UTF-8";
-        LC_NAME = "en_US.UTF-8";
-        LC_NUMERIC = "en_US.UTF-8";
-        LC_PAPER = "en_US.UTF-8";
-        LC_TELEPHONE = "en_US.UTF-8";
-        LC_TIME = "en_US.UTF-8";
+        LC_ADDRESS = us;
+        LC_IDENTIFICATION = us;
+        LC_MEASUREMENT = us;
+        LC_MONETARY = us;
+        LC_NAME = us;
+        LC_NUMERIC = us;
+        LC_PAPER = us;
+        LC_TELEPHONE = us;
+        LC_TIME = us;
       };
 
       supportedLocales = [
@@ -70,3 +71,4 @@ in {
     };
   };
 }
+

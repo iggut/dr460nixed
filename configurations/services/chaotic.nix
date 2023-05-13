@@ -22,6 +22,6 @@
 
   # Let my user build packages
   users.users.iggut = {
-    extraGroups = ["chaotic-op"];
+    extraGroups = [ "chaotic-op" ];
   };
 }

@@ -2,10 +2,10 @@
 set -o errexit
 
 # Create EFI
-mkfs.vfat -F32 /dev/nvme0n1p2
+mkfs.vfat -F32 /dev/nvme1n1p2
 
 # Create pool
-zpool create -f zroot /dev/nvme0n1p1
+zpool create -f zroot /dev/nvme1n1p1
 zpool set autotrim=on zroot
 zfs set compression=on zroot
 zfs set mountpoint=none zroot
@@ -38,12 +38,15 @@ chown -R 1000:100 /mnt/home/iggut
 chmod 0700 /mnt/home/iggut
 mount -t zfs zroot/data/persistent /mnt/var/persistent
 mount -t zfs zroot/ROOT/residues /mnt/var/residues
-mount /dev/nvme0n1p2 /mnt/boot
+mount /dev/nvme1n1p2 /mnt/boot
 
 # Not needed
 zfs set atime=off zroot/ROOT/nix
 
 # Podman
 zfs create -o mountpoint=none -o canmount=on zroot/containers
+
+nixos-generate-config --root /mnt/
+
 
 echo "Finished."

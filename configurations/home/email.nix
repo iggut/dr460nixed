@@ -1,10 +1,12 @@
-_: let
+_:
+let
   mailserver = "mail.garudalinux.net";
   key = "D245D484F3578CB17FD6DA6B67DB29BFF3C96757";
-in {
+in
+{
   accounts.email = {
     accounts.main = {
-      address = "igor.gutchin@gmail.com";
+      address = "iggut@dr460nf1r3.org";
       gpg = {
         inherit key;
         signByDefault = false;
@@ -14,7 +16,7 @@ in {
         port = 993;
       };
       primary = true;
-      realName = "Igor G";
+      realName = "iggut Jensch";
       signature = {
         text = ''
           Sent from NixOS
@@ -25,10 +27,10 @@ in {
       smtp = {
         host = mailserver;
       };
-      userName = "igor.gutchin@gmail.com";
+      userName = "iggut@dr460nf1r3.org";
     };
     accounts.garuda-personal = {
-      address = "igor.gutchin@gmail.com";
+      address = "dr460nf1r3@garudalinux.org";
       gpg = {
         inherit key;
         signByDefault = false;
@@ -37,7 +39,7 @@ in {
         host = mailserver;
         port = 993;
       };
-      realName = "Igor G";
+      realName = "iggut (dr460nf1r3)";
       thunderbird.enable = true;
       signature = {
         text = ''
@@ -48,7 +50,7 @@ in {
       smtp = {
         host = mailserver;
       };
-      userName = "igor.gutchin@gmail.com";
+      userName = "dr460nf1r3@garudalinux.org";
     };
     accounts.garuda-team = {
       address = "team@garudalinux.org";

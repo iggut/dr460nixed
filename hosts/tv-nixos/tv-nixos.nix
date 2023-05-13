@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }: {
   # Individual settings
   imports = [
@@ -17,8 +16,8 @@
 
   # Bootloader
   boot = {
-    extraModulePackages = with config.boot.kernelPackages; [acpi_call];
-    initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+    initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
     kernelPackages = pkgs.linuxPackages_cachyos;
     loader = {
       efi = {
@@ -107,7 +106,7 @@
   };
 
   # Enable the touchpad
-  environment.systemPackages = with pkgs; [libinput];
+  environment.systemPackages = with pkgs; [ libinput ];
 
   # Home-manager desktop configuration
   home-manager.users."iggut" = import ../../configurations/home/desktops.nix;

@@ -1,15 +1,15 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.dr460nixed.development;
-in {
+in
+{
   options.dr460nixed.development = {
-    enable =
-      mkOption
+    enable = mkOption
       {
         default = false;
         type = types.bool;
@@ -21,21 +21,22 @@ in {
 
   config = mkIf cfg.enable {
     # Import secrets needed for development
-    sops.secrets."api_keys/sops" = {
-      mode = "0600";
-      owner = config.users.users.iggut.name;
-      path = "/home/iggut/.config/sops/age/keys.txt";
-    };
-    sops.secrets."api_keys/heroku" = {
-      mode = "0600";
-      owner = config.users.users.iggut.name;
-      path = "/home/iggut/.netrc";
-    };
-    sops.secrets."api_keys/cloudflared" = {
-      mode = "0600";
-      owner = config.users.users.iggut.name;
-      path = "/home/iggut/.cloudflared/cert.pem";
-    };
+    #sops.secrets."api_keys/sops" = {
+    #  mode = "0600";
+    #  owner = config.users.users.iggut.name;
+    #  path = "/home/iggut/.config/sops/age/keys.txt";
+    #};
+    #sops.secrets."api_keys/heroku" = {
+    #  mode = "0600";
+    #  owner = config.users.users.iggut.name;
+    #  path = "/home/iggut/.netrc";
+    #};
+    #sops.secrets."api_keys/cloudflared" = {
+    #  mode = "0600";
+    #  owner = config.users.users.iggut.name;
+    #  path = "/home/iggut/.cloudflared/cert.pem";
+    #};
+
 
     # Conflicts with virtualisation.containers if enabled
     boot.enableContainers = false;
@@ -73,7 +74,7 @@ in {
       podman = {
         autoPrune = {
           enable = true;
-          flags = ["--all"];
+          flags = [ "--all" ];
         };
         dockerCompat = true;
         dockerSocket.enable = true;
@@ -82,7 +83,7 @@ in {
     };
 
     # Allow to cross-compile to aarch64
-    boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     # In case I need to fix my phone & Waydroid
     programs.adb.enable = true;

@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }: {
   # Own systemd config using a custom user
   systemd.services.adguardhome = {
@@ -14,16 +13,16 @@
   users.users."adguard" = {
     createHome = false;
     description = "Adguard DNS";
-    extraGroups = ["nginx"];
+    extraGroups = [ "nginx" ];
     group = "adguard";
     home = "/var/lib/AdGuardHome";
     isSystemUser = true;
   };
-  users.groups.adguard = {};
+  users.groups.adguard = { };
 
   # Complete Adguard configuration
   services.adguardhome = {
-    enable = true;
+    enable = false;
     mutableSettings = false;
     settings = {
       auth_attempts = 5;
@@ -33,7 +32,7 @@
       dns = {
         aaaa_disabled = false;
         all_servers = false;
-        allowed_clients = [];
+        allowed_clients = [ ];
         anonymize_client_ip = false;
         bind_hosts = [
           "100.86.102.115"
@@ -56,7 +55,7 @@
           "twitter"
           "whatsapp"
         ];
-        bogus_nxdomain = [];
+        bogus_nxdomain = [ ];
         bootstrap_dns = [
           "1.1.1.1"
           "1.0.0.1"
@@ -68,31 +67,31 @@
         cache_time = 30;
         cache_ttl_max = 0;
         cache_ttl_min = 0;
-        disallowed_clients = [];
-        dns64_prefixes = [];
+        disallowed_clients = [ ];
+        dns64_prefixes = [ ];
         edns_client_subnet = false;
         enable_dnssec = true;
         fastest_addr = false;
         fastest_timeout = "1s";
         filtering_enabled = true;
         filters_update_interval = 1;
-        ipset = [];
-        local_ptr_upstreams = [];
+        ipset = [ ];
+        local_ptr_upstreams = [ ];
         max_goroutines = 300;
         parental_block_host = "family-block.dns.adguard.com";
         parental_cache_size = 1048576;
         parental_enabled = false;
         port = 53;
-        private_networks = [];
+        private_networks = [ ];
         protection_enabled = true;
         querylog_enabled = true;
         querylog_file_enabled = true;
         querylog_interval = "2160h";
         querylog_size_memory = 1000;
         ratelimit = 20;
-        ratelimit_whitelist = [];
+        ratelimit_whitelist = [ ];
         refuse_any = true;
-        rewrites = [];
+        rewrites = [ ];
         safebrowsing_block_host = "standard-block.dns.adguard.com";
         safebrowsing_cache_size = 1048576;
         safebrowsing_enabled = false;
@@ -103,7 +102,7 @@
         trusted_proxies = [
           "127.0.0.1"
         ];
-        upstream_dns = ["https://cloudflare-dns.com/dns-query"];
+        upstream_dns = [ "https://cloudflare-dns.com/dns-query" ];
         upstream_dns_file = "";
         upstream_timeout = "10s";
         use_http3_upstreams = true;
@@ -112,13 +111,13 @@
       querylog = {
         enabled = true;
         file_enabled = true;
-        ignored = [];
+        ignored = [ ];
         interval = "2160h";
         size_memory = 1000;
       };
       statistics = {
         enabled = true;
-        ignored = [];
+        ignored = [ ];
         interval = 90;
       };
       filters = [
@@ -172,19 +171,19 @@
       ];
       tls = {
         allow_unencrypted_doh = true;
-        certificate_path = config.sops.secrets."ssl/oracle-dragon-cert".path;
+        #certificate_path = config.sops.secrets."ssl/oracle-dragon-cert".path;
         enabled = true;
         force_https = false;
         port_dns_over_quic = 853;
         port_dns_over_tls = 853;
         port_https = 3001;
-        private_key_path = config.sops.secrets."ssl/oracle-dragon-key".path;
+        #private_key_path = config.sops.secrets."ssl/oracle-dragon-key".path;
         server_name = "100.86.102.115";
       };
       users = [
         {
           name = "iggut";
-          password = "$2b$05$zjtZ461DmcgZTgv7AppSOu66ZieCWEAR63xCeGQt.CyKJYAzhkK82";
+          password = "123456";
         }
       ];
       schema_version = 14;
@@ -193,15 +192,15 @@
 
   # Supply non-RDNS found hostnames via /etc/hosts
   networking.hosts = {
-    "100.116.167.11" = ["dragon-pixel"];
-    "100.120.171.12" = ["tv-nixos"];
-    "100.85.210.126" = ["rpi-dragon"];
-    "100.86.102.115" = ["oracle-dragon"];
-    "100.99.129.81" = ["slim-lair"];
-    "fd7a:115c:a1e0:ab12:4843:cd96:6255:d27e" = ["oracle-dragon"];
-    "fd7a:115c:a1e0:ab12:4843:cd96:6256:6673" = ["rpi-dragon"];
-    "fd7a:115c:a1e0:ab12:4843:cd96:6263:8151" = ["slim-lair"];
-    "fd7a:115c:a1e0:ab12:4843:cd96:6274:a70b" = ["dragon-pixel"];
-    "fd7a:115c:a1e0:ab12:4843:cd96:6278:ab0c" = ["tv-nixos"];
+    "100.116.167.11" = [ "dragon-pixel" ];
+    "100.120.171.12" = [ "tv-nixos" ];
+    "100.85.210.126" = [ "rpi-dragon" ];
+    "100.86.102.115" = [ "oracle-dragon" ];
+    "100.99.129.81" = [ "slim-lair" ];
+    "fd7a:115c:a1e0:ab12:4843:cd96:6255:d27e" = [ "oracle-dragon" ];
+    "fd7a:115c:a1e0:ab12:4843:cd96:6256:6673" = [ "rpi-dragon" ];
+    "fd7a:115c:a1e0:ab12:4843:cd96:6263:8151" = [ "slim-lair" ];
+    "fd7a:115c:a1e0:ab12:4843:cd96:6274:a70b" = [ "dragon-pixel" ];
+    "fd7a:115c:a1e0:ab12:4843:cd96:6278:ab0c" = [ "tv-nixos" ];
   };
 }

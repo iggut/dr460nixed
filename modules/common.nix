@@ -1,16 +1,16 @@
-{ config
-, lib
-, pkgs
-, ...
-}:
-with lib;
-let
-  cfg = config.dr460nixed;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.dr460nixed;
+in {
   options.dr460nixed = {
     common = {
-      enable = mkOption
+      enable =
+        mkOption
         {
           default = true;
           type = types.bool;
@@ -19,7 +19,8 @@ in
           '';
         };
     };
-    rpi = mkOption
+    rpi =
+      mkOption
       {
         default = false;
         type = types.bool;
@@ -27,7 +28,8 @@ in
           Whether this is a Raspberry Pi.
         '';
       };
-    nodocs = mkOption
+    nodocs =
+      mkOption
       {
         default = true;
         type = types.bool;
@@ -39,7 +41,7 @@ in
 
   config = mkIf cfg.common.enable {
     ## A few kernel tweaks
-    boot.kernel.sysctl = { "kernel.unprivileged_userns_clone" = 1; };
+    boot.kernel.sysctl = {"kernel.unprivileged_userns_clone" = 1;};
 
     # Microcode and firmware updates
     hardware = {
@@ -62,17 +64,6 @@ in
         SystemMaxUse=50M
         RuntimeMaxUse=10M
       '';
-    };
-
-    # We want to be insulted on wrong passwords
-    # & allow deployment of configurations via Colmena
-    security.sudo = {
-      execWheelOnly = true;
-      extraConfig = ''
-        Defaults pwfeedback
-        deploy ALL=(ALL) NOPASSWD:ALL
-      '';
-      package = pkgs.sudo.override { withInsults = true; };
     };
 
     # Increase open file limit for sudoers
@@ -98,7 +89,10 @@ in
         lfs.enable = true;
       };
       # The GnuPG agent
-      gnupg.agent.enable = true;
+      gnupg.agent = {
+        enable = true;
+        pinentryFlavor = "curses";
+      };
       # type "fuck" to fix the last command that made you go "fuck"
       thefuck.enable = true;
     };
@@ -145,8 +139,8 @@ in
 
       settings = {
         # Only allow the wheel group to handle Nix
-        allowed-users = [ "@wheel" ];
-        trusted-users = [ "@wheel" "deploy" ];
+        allowed-users = ["@wheel"];
+        trusted-users = ["@wheel" "deploy"];
 
         # Automatically optimise the store
         auto-optimise-store = true;
@@ -176,8 +170,8 @@ in
 
         # Enable new nix command, flakes and system features
         # and also "unintended" recursion as well as content addresssed nix
-        extra-experimental-features = [ "flakes" "nix-command" "recursive-nix" "ca-derivations" ];
-        system-features = [ "big-parallel" "kvm" "recursive-nix" ];
+        extra-experimental-features = ["flakes" "nix-command" "recursive-nix" "ca-derivations"];
+        system-features = ["big-parallel" "kvm" "recursive-nix"];
 
         # Continue building derivations if one fails
         keep-going = true;
@@ -210,8 +204,8 @@ in
       script = ''
         "${config.nix.package.out}/bin/nix-store" --gc --print-roots | "${pkgs.gawk}/bin/awk" 'match($0, /^(.*\/result) -> \/nix\/store\/[^-]+-nixos-system/, a) { print a[1] }' | xargs -r -d\\n rm
       '';
-      before = [ "nix-gc.service" ];
-      wantedBy = [ "nix-gc.service" ];
+      before = ["nix-gc.service"];
+      wantedBy = ["nix-gc.service"];
     };
 
     # Print a diff when running system updates
@@ -229,4 +223,4 @@ in
       fi
     '';
   };
-} 
+}

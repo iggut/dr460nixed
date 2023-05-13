@@ -4,7 +4,7 @@
     ./browsers.nix
     ./common.nix
     ./development.nix
-    ./email.nix
+    #./email.nix
     ./kde.nix
     ./misc.nix
     ./shells.nix

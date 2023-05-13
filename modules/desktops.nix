@@ -1,15 +1,15 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.dr460nixed.desktops;
-in {
+in
+{
   options.dr460nixed.desktops = {
-    enable =
-      mkOption
+    enable = mkOption
       {
         default = false;
         type = types.bool;
@@ -27,14 +27,14 @@ in {
           autoNumlock = true;
           enable = true;
           settings = {
-            General = {Font = "Fira Sans";};
-            # Autologin = { User = "iggut"; Session = "plasma"; };
+            General = { Font = "Fira Sans"; };
+             Autologin = { User = "iggut"; Session = "plasma"; };
           };
           theme = "Sweet";
         };
       };
       enable = true;
-      excludePackages = [pkgs.xterm];
+      excludePackages = [ pkgs.xterm ];
     };
 
     # Allow GTK applications to disable an appmenu on KDE
@@ -44,8 +44,7 @@ in {
     services.flatpak.enable = true;
 
     # Remove a few applications that aren't needed
-    environment.plasma5.excludePackages = with pkgs;
-    with libsForQt5; [
+    environment.plasma5.excludePackages = with pkgs; with libsForQt5; [
       oxygen
       plasma-browser-integration
     ];
@@ -88,10 +87,10 @@ in {
       fontconfig = {
         cache32Bit = true;
         defaultFonts = {
-          emoji = ["Noto Color Emoji"];
-          monospace = ["JetBrains Mono Nerd Font" "Noto Fonts Emoji"];
-          sansSerif = ["Fira" "Noto Fonts Emoji"];
-          serif = ["Fira" "Noto Fonts Emoji"];
+          emoji = [ "Noto Color Emoji" ];
+          monospace = [ "JetBrains Mono Nerd Font" "Noto Fonts Emoji" ];
+          sansSerif = [ "Fira" "Noto Fonts Emoji" ];
+          serif = [ "Fira" "Noto Fonts Emoji" ];
         };
         # This fixes emoji stuff
         enable = true;
@@ -156,12 +155,9 @@ in {
 
     # # Kernel paramters & settings
     boot.kernelParams = [
-      "mitigations=off"
-      "nopti"
       "nowatchdog"
       "split_lock_detect=off" # https://www.phoronix.com/news/Linux-Splitlock-Hurts-Gaming
       "systemd.gpt_auto=0" # https://github.com/NixOS/nixpkgs/issues/35681#issuecomment-370202008
-      "tsx=on"
     ];
   };
 }
